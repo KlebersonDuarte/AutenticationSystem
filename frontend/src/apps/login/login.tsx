@@ -1,38 +1,32 @@
 function Login() {
-    return (
-        <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+  return (
+    <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-md">
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900">Bem-vindo</h1>
 
-            <div className="w-full max-w-md">
+            <p className="mt-2 text-gray-500">
+              Entre na sua conta para continuar
+            </p>
+          </div>
 
-                <div className="bg-white rounded-2xl shadow-xl p-8">
+          <form method="POST" action="/login" className="space-y-5">
+            <div>
+              <label
+                htmlFor="userEmail"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Email
+              </label>
 
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold text-gray-900">
-                            Bem-vindo
-                        </h1>
-
-                        <p className="mt-2 text-gray-500">
-                            Entre na sua conta para continuar
-                        </p>
-                    </div>
-
-                    <form method="POST" action="/login" className="space-y-5">
-
-                        <div>
-                            <label
-                                htmlFor="userEmail"
-                                className="block text-sm font-medium text-gray-700 mb-2"
-                            >
-                                Email
-                            </label>
-
-                            <input
-                                type="email"
-                                id="userEmail"
-                                name="userEmail"
-                                placeholder="seu@email.com"
-                                required
-                                className="
+              <input
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                placeholder="seu@email.com"
+                required
+                className="
                                     w-full
                                     px-4 py-3
                                     bg-gray-50
@@ -47,33 +41,33 @@ function Login() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-                            />
-                        </div>
+              />
+            </div>
 
-                        <div>
-                            <div className="flex items-center justify-between mb-2">
-                                <label
-                                    htmlFor="userPassword"
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    Senha
-                                </label>
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label
+                  htmlFor="userPassword"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Senha
+                </label>
 
-                                <a
-                                    href="/forgot-password"
-                                    className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                                >
-                                    Esqueceu a senha?
-                                </a>
-                            </div>
+                <a
+                  href="/forgot-password"
+                  className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                >
+                  Esqueceu a senha?
+                </a>
+              </div>
 
-                            <input
-                                type="password"
-                                id="userPassword"
-                                name="userPassword"
-                                placeholder="Digite sua senha"
-                                required
-                                className="
+              <input
+                type="password"
+                id="userPassword"
+                name="userPassword"
+                placeholder="Digite sua senha"
+                required
+                className="
                                     w-full
                                     px-4 py-3
                                     bg-gray-50
@@ -88,12 +82,12 @@ function Login() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-                            />
-                        </div>
+              />
+            </div>
 
-                        <button
-                            type="submit"
-                            className="
+            <button
+              type="submit"
+              className="
                                 w-full
                                 py-3
                                 px-4
@@ -110,44 +104,38 @@ function Login() {
                                 focus:ring-4
                                 focus:ring-blue-500/30
                             "
-                        >
-                            Entrar
-                        </button>
+            >
+              Entrar
+            </button>
+          </form>
 
-                    </form>
-
-                    <div className="relative my-7">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-gray-200" />
-                        </div>
-
-                        <div className="relative flex justify-center">
-                            <span className="bg-white px-3 text-sm text-gray-400">
-                                ou
-                            </span>
-                        </div>
-                    </div>
-
-                    <p className="text-center text-sm text-gray-500">
-                        Não tem uma conta?{" "}
-                        <a
-                            href="/register"
-                            className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
-                        >
-                            Cadastre-se
-                        </a>
-                    </p>
-
-                </div>
-
-                <p className="text-center text-xs text-gray-400 mt-6">
-                    © 2026 Seu Projeto. Todos os direitos reservados.
-                </p>
-
+          <div className="relative my-7">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200" />
             </div>
 
-        </main>
-    );
+            <div className="relative flex justify-center">
+              <span className="bg-white px-3 text-sm text-gray-400">ou</span>
+            </div>
+          </div>
+
+          <p className="text-center text-sm text-gray-500">
+            Não tem uma conta?{" "}
+            <a
+              href="/register"
+              className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+            >
+              Cadastre-se
+            </a>
+          </p>
+        </div>
+
+        <p className="text-center text-xs text-gray-400 mt-6">
+          © {new Date().getFullYear()} MyApp. Todos os direitos reservados.
+        </p>
+      </div>
+    </main>
+  );
 }
 
 export default Login;
