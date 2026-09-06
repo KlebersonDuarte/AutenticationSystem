@@ -1,4 +1,9 @@
+import {Link} from "react-router-dom";
+
 function Register() {
+  
+//TODO: Implementar a lógica de registro de usuário, incluindo validação de formulário e envio de dados para o backend.
+
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md">
@@ -176,8 +181,8 @@ function Register() {
 
           <p className="text-center text-sm text-gray-500">
             Já possui uma conta?{" "}
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="
                                 font-semibold
                                 text-blue-600
@@ -186,7 +191,7 @@ function Register() {
                             "
             >
               Entrar
-            </a>
+            </Link>
           </p>
         </div>
 

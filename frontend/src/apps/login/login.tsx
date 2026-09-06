@@ -1,4 +1,8 @@
+import {Link} from "react-router-dom";
+
 function Login() {
+  
+  //TODO: Implementar a lógica de autenticação de usuário, incluindo validação de formulário e envio de dados para o backend.
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
@@ -53,12 +57,12 @@ function Login() {
                   Senha
                 </label>
 
-                <a
-                  href="/forgot-password"
+                <Link
+                  to="/forgot-password"
                   className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   Esqueceu a senha?
-                </a>
+                </Link>
               </div>
 
               <input
@@ -121,12 +125,12 @@ function Login() {
 
           <p className="text-center text-sm text-gray-500">
             Não tem uma conta?{" "}
-            <a
-              href="/register"
+            <Link
+              to="/register"
               className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
             >
               Cadastre-se
-            </a>
+            </Link>
           </p>
         </div>
 

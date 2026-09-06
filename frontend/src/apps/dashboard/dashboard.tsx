@@ -1,4 +1,8 @@
+import {Link} from "react-router-dom";
+
 function Dashboard() {
+ 
+ //tODO: Implementar a lógica de autenticação e exibição de informações do usuário, incluindo chamadas à API para obter dados da conta e atividades recentes.
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white border-b border-gray-200">
@@ -15,8 +19,9 @@ function Dashboard() {
 
               <p className="text-xs text-gray-500">Usuário</p>
             </div>
-
+<Link to="/login">
             <button
+          
               type="button"
               className="
                                 px-4 py-2
@@ -28,9 +33,10 @@ function Dashboard() {
                                 hover:bg-red-50
                                 transition
                             "
-            >
+            > 
               Sair
             </button>
+            </Link>
           </div>
         </div>
       </header>
