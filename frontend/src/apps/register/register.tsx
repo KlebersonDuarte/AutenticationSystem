@@ -1,8 +1,47 @@
-import {Link} from "react-router-dom";
+"use client";
+
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { registerUser } from "../../service/api";
 
 function Register() {
-  
-//TODO: Implementar a lógica de registro de usuário, incluindo validação de formulário e envio de dados para o backend.
+  const [formData, setFormData] = useState({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+    confirmPassword: ""
+  });
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if(!formData.userName || !formData.userEmail || !formData.userPassword || !formData.confirmPassword) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+    if(formData.userPassword !== formData.confirmPassword) {
+      alert("As senhas não coincidem.");
+      return;
+    }
+
+    const userData = {
+      name: formData.userName,
+      email: formData.userEmail,
+      password: formData.userPassword
+    };
+
+    const response = await registerUser(userData);
+    if(response.success) {
+      alert("Conta criada com sucesso!");
+      setFormData({
+        userName: "",
+        userEmail: "",
+        userPassword: "",
+        confirmPassword: ""
+      });
+    }
+
+  };
 
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
@@ -16,7 +55,7 @@ function Register() {
             </p>
           </div>
 
-          <form method="POST" action="/register" className="space-y-5">
+          <form onSubmit={handleRegister} className="space-y-5">
             <div>
               <label
                 htmlFor="userName"
@@ -46,8 +85,10 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              />
-            </div>
+              value={formData.userName}
+              onChange={(e) => setFormData({...formData, userName: e.target.value})}
+            />
+          </div>
 
             <div>
               <label
@@ -78,8 +119,10 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              />
-            </div>
+              value={formData.userEmail}
+              onChange={(e) => setFormData({...formData, userEmail: e.target.value})}
+            />
+          </div>
 
             <div>
               <label
@@ -110,8 +153,10 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              />
-            </div>
+              value={formData.userPassword}
+              onChange={(e) => setFormData({...formData, userPassword: e.target.value})}
+            />
+          </div>
 
             <div>
               <label
@@ -142,8 +187,10 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              />
-            </div>
+              value={formData.confirmPassword}
+              onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+            />
+          </div>
 
             <button
               type="submit"
@@ -180,7 +227,7 @@ function Register() {
           </div>
 
           <p className="text-center text-sm text-gray-500">
-            Já possui uma conta?{" "}
+            Já possui uma conta?
             <Link
               to="/login"
               className="
