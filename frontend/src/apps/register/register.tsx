@@ -9,42 +9,46 @@ function Register() {
     userName: "",
     userEmail: "",
     userPassword: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(!formData.userName || !formData.userEmail || !formData.userPassword || !formData.confirmPassword) {
+    if (
+      !formData.userName ||
+      !formData.userEmail ||
+      !formData.userPassword ||
+      !formData.confirmPassword
+    ) {
       alert("Por favor, preencha todos os campos.");
       return;
     }
-    if(formData.userPassword !== formData.confirmPassword) {
+    if (formData.userPassword !== formData.confirmPassword) {
       alert("As senhas não coincidem.");
       return;
     }
 
-  
     const userData = {
       name: formData.userName,
       email: formData.userEmail,
-      password: formData.userPassword
+      password: formData.userPassword,
     };
 
-  try{
-    const response = await registerUser(userData);
-    if(response.success) {
-      alert("Conta criada com sucesso!");
-      setFormData({
-        userName: "",
-        userEmail: "",
-        userPassword: "",
-        confirmPassword: ""
-      });
-    }}catch(error) {
+    try {
+      const response = await registerUser(userData);
+      if (response.success) {
+        alert("Conta criada com sucesso!");
+        setFormData({
+          userName: "",
+          userEmail: "",
+          userPassword: "",
+          confirmPassword: "",
+        });
+      }
+    } catch (error) {
       alert("Erro ao criar conta: " + error);
     }
-
   };
 
   return (
@@ -89,10 +93,12 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              value={formData.userName}
-              onChange={(e) => setFormData({...formData, userName: e.target.value})}
-            />
-          </div>
+                value={formData.userName}
+                onChange={(e) =>
+                  setFormData({ ...formData, userName: e.target.value })
+                }
+              />
+            </div>
 
             <div>
               <label
@@ -123,10 +129,12 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              value={formData.userEmail}
-              onChange={(e) => setFormData({...formData, userEmail: e.target.value})}
-            />
-          </div>
+                value={formData.userEmail}
+                onChange={(e) =>
+                  setFormData({ ...formData, userEmail: e.target.value })
+                }
+              />
+            </div>
 
             <div>
               <label
@@ -157,10 +165,12 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              value={formData.userPassword}
-              onChange={(e) => setFormData({...formData, userPassword: e.target.value})}
-            />
-          </div>
+                value={formData.userPassword}
+                onChange={(e) =>
+                  setFormData({ ...formData, userPassword: e.target.value })
+                }
+              />
+            </div>
 
             <div>
               <label
@@ -191,10 +201,12 @@ function Register() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              value={formData.confirmPassword}
-              onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-            />
-          </div>
+                value={formData.confirmPassword}
+                onChange={(e) =>
+                  setFormData({ ...formData, confirmPassword: e.target.value })
+                }
+              />
+            </div>
 
             <button
               type="submit"

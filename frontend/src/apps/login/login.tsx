@@ -1,8 +1,42 @@
+import { useState } from "react";
 import {Link} from "react-router-dom";
+import { loginUser } from "../../service/api";
 
 function Login() {
   
-  //TODO: Implementar a lógica de autenticação de usuário, incluindo validação de formulário e envio de dados para o backend.
+ const [formData, setFormData] = useState({
+    userEmail: "",
+    userPassword: ""
+  });
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if(!formData.userEmail || !formData.userPassword) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    const userData = {
+      email: formData.userEmail,
+      password: formData.userPassword
+    };
+
+    try {
+      const response = await loginUser(userData);
+      if(response.success) {
+        alert("Login realizado com sucesso!");
+        setFormData({
+          userEmail: "",
+          userPassword: ""
+        });
+      }
+    }
+    catch(error) {
+      alert("Erro ao fazer login: " + error);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
@@ -15,7 +49,7 @@ function Login() {
             </p>
           </div>
 
-          <form method="POST" action="/login" className="space-y-5">
+          <form method="POST" onSubmit={handleLogin} className="space-y-5">
             <div>
               <label
                 htmlFor="userEmail"
@@ -45,7 +79,7 @@ function Login() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              />
+              onChange={(e) => setFormData({...formData, userEmail: e.target.value})}/>
             </div>
 
             <div>
@@ -86,7 +120,7 @@ function Login() {
                                     focus:ring-4
                                     focus:ring-blue-500/10
                                 "
-              />
+              onChange={(e) => setFormData({...formData, userPassword: e.target.value})}/>
             </div>
 
             <button
