@@ -24,12 +24,14 @@ function Register() {
       return;
     }
 
+  
     const userData = {
       name: formData.userName,
       email: formData.userEmail,
       password: formData.userPassword
     };
 
+  try{
     const response = await registerUser(userData);
     if(response.success) {
       alert("Conta criada com sucesso!");
@@ -39,6 +41,8 @@ function Register() {
         userPassword: "",
         confirmPassword: ""
       });
+    }}catch(error) {
+      alert("Erro ao criar conta: " + error);
     }
 
   };
@@ -229,7 +233,7 @@ function Register() {
           <p className="text-center text-sm text-gray-500">
             Já possui uma conta?
             <Link
-              to="/login"
+              to="/"
               className="
                                 font-semibold
                                 text-blue-600
