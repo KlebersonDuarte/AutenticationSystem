@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
-import {Link,useNavigate} from "react-router-dom";
-import { getDashboard } from "../../service/api";
+import {useNavigate} from "react-router-dom";
+import { getDashboard, logoutUser } from "../../service/api";
 
 function Dashboard() {
   type User = {
@@ -26,6 +26,11 @@ function Dashboard() {
     fetchDashboardData();
   }, [navigate]);
 
+  async function handleLogout() {
+    await logoutUser();
+    navigate("/");
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white border-b border-gray-200">
@@ -42,9 +47,8 @@ function Dashboard() {
 
               <p className="text-xs text-gray-500">Usuário</p>
             </div>
-<Link to="/">
             <button
-          
+              onClick={handleLogout}
               type="button"
               className="
                                 px-4 py-2
@@ -59,7 +63,6 @@ function Dashboard() {
             > 
               Sair
             </button>
-            </Link>
           </div>
         </div>
       </header>

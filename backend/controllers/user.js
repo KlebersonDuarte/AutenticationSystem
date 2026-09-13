@@ -68,3 +68,12 @@ export const getUser = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 }
+
+export const logout = (req, res) => {
+    res.clearCookie("access_token", {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        "path": "/"});
+    return res.status(200).json({ success: true, message: "Usuário deslogado com sucesso" });
+}
