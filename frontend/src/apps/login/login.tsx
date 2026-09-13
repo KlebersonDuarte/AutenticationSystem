@@ -1,10 +1,11 @@
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
 import { loginUser } from "../../service/api";
 
 function Login() {
-  
- const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
     userEmail: "",
     userPassword: ""
   });
@@ -30,6 +31,7 @@ function Login() {
           userEmail: "",
           userPassword: ""
         });
+        navigate("/dashboard");
       }
     }
     catch(error) {
