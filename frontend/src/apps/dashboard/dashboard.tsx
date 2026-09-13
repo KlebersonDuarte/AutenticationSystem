@@ -1,3 +1,5 @@
+"use client";
+
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import { getDashboard, logoutUser } from "../../service/api";
@@ -28,7 +30,7 @@ function Dashboard() {
 
   async function handleLogout() {
     await logoutUser();
-    navigate("/");
+    navigate("/login");
   }
 
   return (

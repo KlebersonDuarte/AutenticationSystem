@@ -47,7 +47,7 @@ function Register() {
           confirmPassword: "",
         });
 
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
       alert("Erro ao criar conta: " + error);
