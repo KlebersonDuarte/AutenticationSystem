@@ -50,7 +50,7 @@ export const getUser = async (req, res) => {
                 });
             }
 
-            const token = createToken({ id: user.id_usuario});
+            const token = createToken({ id: user.id_usuario, name: user.nome_usuario, email: user.email_usuario });
 
              res.cookie("access_token", token, {
                 httpOnly: true,

@@ -1,8 +1,31 @@
-import {Link} from "react-router-dom";
+import {useState, useEffect} from "react";
+import {Link,useNavigate} from "react-router-dom";
+import { getDashboard } from "../../service/api";
 
 function Dashboard() {
- 
- 
+  type User = {
+    id: number
+    name: string
+    email: string
+  };
+
+  const navigate = useNavigate();
+  const [user,setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const data = await getDashboard();
+        setUser(data.user);
+      } catch (error) {
+        console.error("Erro ao buscar dados do dashboard:", error);
+        navigate("/");
+      }
+    };
+
+    fetchDashboardData();
+  }, [navigate]);
+
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white border-b border-gray-200">
@@ -14,7 +37,7 @@ function Dashboard() {
           <div className="flex items-center gap-4">
             <div className="hidden sm:block text-right">
               <p className="text-sm font-semibold text-gray-800">
-                {"User name"}
+                {user ? user.name : "Carregando..."}
               </p>
 
               <p className="text-xs text-gray-500">Usuário</p>
@@ -46,7 +69,7 @@ function Dashboard() {
           <p className="text-sm font-medium text-blue-600 mb-2">Dashboard</p>
 
           <h2 className="text-3xl font-bold text-gray-900">
-            Bem-vindo, {"User name"}
+            Bem-vindo, {user ? user.name : "Carregando..."}
           </h2>
 
           <p className="mt-2 text-gray-500">
@@ -152,7 +175,7 @@ function Dashboard() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-gray-900">{"User name"}</h3>
+                <h3 className="font-semibold text-gray-900">{user ? user.name : "Carregando..."}</h3>
 
                 <p className="text-sm text-gray-500">Usuário</p>
               </div>
@@ -162,7 +185,7 @@ function Dashboard() {
               <div>
                 <p className="text-xs text-gray-400 uppercase">Email</p>
 
-                <p className="text-sm text-gray-700 mt-1">{"user@email.com"}</p>
+                <p className="text-sm text-gray-700 mt-1">{user ? user.email : "Carregando..."}</p>
               </div>
 
               <div>
