@@ -42,3 +42,15 @@ export async function getDashboard() {
   }
   return data;
 }
+
+export async function logoutUser() {
+  const response = await fetch(`${API_URL}/logout`, {
+    method: "POST",
+    credentials: "include"
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || data.message || "Erro ao fazer logout");
+  }
+  return data;
+}

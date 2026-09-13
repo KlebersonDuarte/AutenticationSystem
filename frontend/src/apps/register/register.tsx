@@ -2,7 +2,7 @@
 
 import { Link,useNavigate} from "react-router-dom";
 import { useState } from "react";
-import { registerUser } from "../../service/api";
+import { registerUser} from "../../service/api";
 
 function Register() {
   const navigate = useNavigate();
