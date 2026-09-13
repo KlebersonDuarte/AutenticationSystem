@@ -1,10 +1,11 @@
 "use client";
 
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../../service/api";
 
 function Register() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     userName: "",
     userEmail: "",
@@ -45,6 +46,8 @@ function Register() {
           userPassword: "",
           confirmPassword: "",
         });
+
+        navigate("/");
       }
     } catch (error) {
       alert("Erro ao criar conta: " + error);

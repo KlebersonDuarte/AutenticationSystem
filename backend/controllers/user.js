@@ -1,5 +1,6 @@
-import { db } from "../db.js";
+import { db } from "./db.js";
 import bcrypt from "bcrypt";
+import {createToken} from "../middleware/authentication.js";
 
 export const postUser = async (req, res) => {
     try {
@@ -17,11 +18,12 @@ export const postUser = async (req, res) => {
             return res.status(200).json({ success: true, message: "User registered successfully", userId: data.insertId });
         });
     } catch (error) {
-        return res.status(500).json({error: error.message});
-    }}
+        return res.status(500).json({ error: error.message });
+    }
+}
 
-    export const getUser = async (req, res) => {
-        try{
+export const getUser = async (req, res) => {
+    try {
         const { email, password } = req.body;
 
         const sql = "SELECT * FROM users WHERE email_usuario = ?";
@@ -32,7 +34,7 @@ export const postUser = async (req, res) => {
             }
 
             if (data.length === 0) {
-                return res.status(401).json({ error: "Invalid email or password" });
+                return res.status(401).json({ error: "Email ou senha inválidos" });
             }
 
             const user = data[0];
@@ -48,8 +50,21 @@ export const postUser = async (req, res) => {
                 });
             }
 
-            return res.status(200).json({ success: true, message: "User logged in successfully", userId: user.id });
+            const token = createToken({ id: user.id_usuario});
 
-        });}catch (error) {
-        return res.status(500).json({error: error.message});}
+             res.cookie("access_token", token, {
+                httpOnly: true,
+                secure: false,
+                sameSite: "lax",
+                maxAge: 60 * 60 * 1000,
+                path: "/"
+            });
+
+
+            return res.status(200).json({ success: true, message: "Usuário logado com sucesso"});
+
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
+}
