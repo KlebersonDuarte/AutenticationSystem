@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {Link,useNavigate} from "react-router-dom";
-import { loginUser } from "../../service/api";
+import { loginUser } from "../../services/api";
 
 function Login() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Login() {
     try {
       const response = await loginUser(userData);
       if(response.success) {
-        alert("Login realizado com sucesso!");
+        alert("Login is successful!");
         setFormData({
           userEmail: "",
           userPassword: ""
@@ -37,7 +37,7 @@ function Login() {
       }
     }
     catch(error) {
-      alert("Erro ao fazer login: " + error);
+      alert("Error occurred while logging in: " + error);
     }
   }
 
@@ -46,10 +46,10 @@ function Login() {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Bem-vindo</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Welcome</h1>
 
             <p className="mt-2 text-gray-500">
-              Entre na sua conta para continuar
+              Sign in to your account to continue
             </p>
           </div>
 
@@ -66,7 +66,7 @@ function Login() {
                 type="email"
                 id="userEmail"
                 name="userEmail"
-                placeholder="seu@email.com"
+                placeholder="Enter your email"
                 required
                 className="
                                     w-full
@@ -92,14 +92,14 @@ function Login() {
                   htmlFor="userPassword"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Senha
+                  Password
                 </label>
 
                 <Link
-                  to="/forgot-password"
+                  to="/login"
                   className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
                 >
-                  Esqueceu a senha?
+                  Forgot your password?
                 </Link>
               </div>
 
@@ -107,7 +107,7 @@ function Login() {
                 type="password"
                 id="userPassword"
                 name="userPassword"
-                placeholder="Digite sua senha"
+                placeholder="Enter your password"
                 required
                 className="
                                     w-full
@@ -147,7 +147,7 @@ function Login() {
                                 focus:ring-blue-500/30
                             "
             >
-              Entrar
+              Sign In
             </button>
           </form>
 
@@ -157,23 +157,23 @@ function Login() {
             </div>
 
             <div className="relative flex justify-center">
-              <span className="bg-white px-3 text-sm text-gray-400">ou</span>
+              <span className="bg-white px-3 text-sm text-gray-400">or</span>
             </div>
           </div>
 
           <p className="text-center text-sm text-gray-500">
-            Não tem uma conta?{" "}
+            Don't have an account?
             <Link
               to="/register"
               className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
             >
-              Cadastre-se
+              Register
             </Link>
           </p>
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          © {new Date().getFullYear()} MyApp. Todos os direitos reservados.
+          © {new Date().getFullYear()} MyApp. All rights reserved.
         </p>
       </div>
     </main>
