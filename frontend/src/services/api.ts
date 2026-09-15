@@ -10,7 +10,7 @@ export async function registerUser(userData: { name: string; email: string; pass
   });
 const data = await response.json();
 if (!response.ok) {
-  throw new Error(data.error || data.message || "Erro ao cadastrar usuário");
+  throw new Error(data.error || data.message || "Error registering user");
 }
   return data;
 }
@@ -26,7 +26,7 @@ export async function loginUser(userData: { email: string; password: string }) {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.error || data.message || "Erro ao fazer login");
+    throw new Error(data.error || data.message || "Error logging in");
   }
   return data;
 }
@@ -38,7 +38,7 @@ export async function getDashboard() {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.error || data.message || "Erro ao acessar o dashboard");
+    throw new Error(data.error || data.message || "Error accessing the dashboard");
   }
   return data;
 }
@@ -50,7 +50,7 @@ export async function logoutUser() {
   });
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.error || data.message || "Erro ao fazer logout");
+    throw new Error(data.error || data.message || "Error logging out");
   }
   return data;
 }

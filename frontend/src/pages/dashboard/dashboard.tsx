@@ -2,7 +2,7 @@
 
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import { getDashboard, logoutUser } from "../../service/api";
+import { getDashboard, logoutUser } from "../../services/api";
 
 function Dashboard() {
   type User = {
@@ -20,7 +20,7 @@ function Dashboard() {
         const data = await getDashboard();
         setUser(data.user);
       } catch (error) {
-        console.error("Erro ao buscar dados do dashboard:", error);
+        console.error("Error fetching dashboard data:", error);
         navigate("/");
       }
     };
@@ -44,10 +44,10 @@ function Dashboard() {
           <div className="flex items-center gap-4">
             <div className="hidden sm:block text-right">
               <p className="text-sm font-semibold text-gray-800">
-                {user ? user.name : "Carregando..."}
+                {user ? user.name : "Loading..."}
               </p>
 
-              <p className="text-xs text-gray-500">Usuário</p>
+              <p className="text-xs text-gray-500">User</p>
             </div>
             <button
               onClick={handleLogout}
@@ -74,11 +74,11 @@ function Dashboard() {
           <p className="text-sm font-medium text-blue-600 mb-2">Dashboard</p>
 
           <h2 className="text-3xl font-bold text-gray-900">
-            Bem-vindo, {user ? user.name : "Carregando..."}
+            Welcome, {user ? user.name : "Loading..."}
           </h2>
 
           <p className="mt-2 text-gray-500">
-            Que bom ter você de volta. Aqui está um resumo da sua conta.
+            Great to have you back. Here's a summary of your account.
           </p>
         </section>
 
@@ -90,14 +90,14 @@ function Dashboard() {
               </div>
 
               <span className="text-xs font-medium text-gray-400">
-                VISÃO GERAL
+                OVERVIEW
               </span>
             </div>
 
-            <h3 className="text-lg font-semibold text-gray-900">Visão geral</h3>
+            <h3 className="text-lg font-semibold text-gray-900">Overview</h3>
 
             <p className="mt-2 text-sm text-gray-500">
-              Confira um resumo das principais informações da sua conta.
+              Check a summary of your account's main information.
             </p>
           </div>
 
@@ -107,13 +107,13 @@ function Dashboard() {
                 <span className="text-xl">👤</span>
               </div>
 
-              <span className="text-xs font-medium text-gray-400">CONTA</span>
+              <span className="text-xs font-medium text-gray-400">PROFILE</span>
             </div>
 
-            <h3 className="text-lg font-semibold text-gray-900">Meu perfil</h3>
+            <h3 className="text-lg font-semibold text-gray-900">My Profile</h3>
 
             <p className="mt-2 text-sm text-gray-500">
-              Visualize e gerencie as informações da sua conta.
+              Visualize and manage your account information.
             </p>
           </div>
 
@@ -123,15 +123,15 @@ function Dashboard() {
                 <span className="text-xl">⚙️</span>
               </div>
 
-              <span className="text-xs font-medium text-gray-400">SISTEMA</span>
+              <span className="text-xs font-medium text-gray-400">SYSTEM</span>
             </div>
 
             <h3 className="text-lg font-semibold text-gray-900">
-              Configurações
+              Configurations
             </h3>
 
             <p className="mt-2 text-sm text-gray-500">
-              Gerencie as configurações e preferências da sua conta.
+              Manage your account's settings and preferences.
             </p>
           </div>
         </section>
@@ -140,10 +140,10 @@ function Dashboard() {
           <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Resumo</h3>
+                <h3 className="text-lg font-semibold text-gray-900">Summary</h3>
 
                 <p className="text-sm text-gray-500 mt-1">
-                  Informações da sua conta
+                  Account information
                 </p>
               </div>
 
@@ -155,20 +155,20 @@ function Dashboard() {
                 <p className="text-sm text-gray-500">Status</p>
 
                 <p className="mt-1 text-lg font-semibold text-green-600">
-                  Ativo
+                  Active
                 </p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm text-gray-500">Atividades</p>
+                <p className="text-sm text-gray-500">Activities</p>
 
                 <p className="mt-1 text-lg font-semibold text-gray-900">0</p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm text-gray-500">Conta criada</p>
+                <p className="text-sm text-gray-500">Account Created</p>
 
-                <p className="mt-1 text-lg font-semibold text-gray-900">Hoje</p>
+                <p className="mt-1 text-lg font-semibold text-gray-900">Today</p>
               </div>
             </div>
           </div>
@@ -180,9 +180,9 @@ function Dashboard() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-gray-900">{user ? user.name : "Carregando..."}</h3>
+                <h3 className="font-semibold text-gray-900">{user ? user.name : "Loading..."}</h3>
 
-                <p className="text-sm text-gray-500">Usuário</p>
+                <p className="text-sm text-gray-500">User</p>
               </div>
             </div>
 
@@ -190,7 +190,7 @@ function Dashboard() {
               <div>
                 <p className="text-xs text-gray-400 uppercase">Email</p>
 
-                <p className="text-sm text-gray-700 mt-1">{user ? user.email : "Carregando..."}</p>
+                <p className="text-sm text-gray-700 mt-1">{user ? user.email : "Loading..."}</p>
               </div>
 
               <div>
@@ -199,7 +199,7 @@ function Dashboard() {
                 <div className="flex items-center gap-2 mt-1">
                   <span className="w-2 h-2 bg-green-500 rounded-full" />
 
-                  <p className="text-sm text-gray-700">Conta ativa</p>
+                  <p className="text-sm text-gray-700">Active Account</p>
                 </div>
               </div>
             </div>
@@ -209,11 +209,11 @@ function Dashboard() {
         <section className="bg-white rounded-xl border border-gray-200 shadow-sm">
           <div className="p-6 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">
-              Atividade recente
+              Recent Activity
             </h3>
 
             <p className="text-sm text-gray-500 mt-1">
-              Acompanhe as atividades da sua conta.
+              Track the activities of your account.
             </p>
           </div>
 
@@ -223,11 +223,11 @@ function Dashboard() {
             </div>
 
             <h4 className="font-medium text-gray-900">
-              Nenhuma atividade recente
+              No recent activity
             </h4>
 
             <p className="text-sm text-gray-500 mt-1">
-              Quando houver alguma atividade, ela aparecerá aqui.
+              When there is any activity, it will appear here.
             </p>
           </div>
         </section>
@@ -235,7 +235,7 @@ function Dashboard() {
 
       <footer className="max-w-7xl mx-auto px-6 py-8">
         <p className="text-center text-xs text-gray-400">
-          © {new Date().getFullYear()}. Todos os direitos reservados.
+          © {new Date().getFullYear()}. All rights reserved.
         </p>
       </footer>
     </div>

@@ -2,7 +2,7 @@
 
 import { Link,useNavigate} from "react-router-dom";
 import { useState } from "react";
-import { registerUser} from "../../service/api";
+import { registerUser} from "../../services/api";
 
 function Register() {
   const navigate = useNavigate();
@@ -22,11 +22,11 @@ function Register() {
       !formData.userPassword ||
       !formData.confirmPassword
     ) {
-      alert("Por favor, preencha todos os campos.");
+      alert("Please fill in all fields.");
       return;
     }
     if (formData.userPassword !== formData.confirmPassword) {
-      alert("As senhas não coincidem.");
+      alert("The passwords do not match.");
       return;
     }
 
@@ -39,7 +39,7 @@ function Register() {
     try {
       const response = await registerUser(userData);
       if (response.success) {
-        alert("Conta criada com sucesso!");
+        alert("Account created successfully!");
         setFormData({
           userName: "",
           userEmail: "",
@@ -50,7 +50,7 @@ function Register() {
         navigate("/login");
       }
     } catch (error) {
-      alert("Erro ao criar conta: " + error);
+      alert("Error occurred while creating account: " + error);
     }
   };
 
@@ -59,10 +59,10 @@ function Register() {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Criar conta</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
 
             <p className="mt-2 text-gray-500">
-              Preencha os dados para criar sua conta
+              Fill in the details to create your account
             </p>
           </div>
 
@@ -72,14 +72,14 @@ function Register() {
                 htmlFor="userName"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Nome
+                Name
               </label>
 
               <input
                 type="text"
                 id="userName"
                 name="userName"
-                placeholder="Digite seu nome"
+                placeholder="Enter your name"
                 required
                 className="
                                     w-full
@@ -115,7 +115,7 @@ function Register() {
                 type="email"
                 id="userEmail"
                 name="userEmail"
-                placeholder="seu@email.com"
+                placeholder="Enter your email"
                 required
                 className="
                                     w-full
@@ -144,14 +144,14 @@ function Register() {
                 htmlFor="userPassword"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Senha
+                Password
               </label>
 
               <input
                 type="password"
                 id="userPassword"
                 name="userPassword"
-                placeholder="Digite sua senha"
+                placeholder="Enter your password"
                 required
                 className="
                                     w-full
@@ -180,14 +180,14 @@ function Register() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Confirmar senha
+                Confirm Password
               </label>
 
               <input
                 type="password"
                 id="confirmPassword"
                 name="confirmPassword"
-                placeholder="Digite sua senha novamente"
+                placeholder="Confirm your password"
                 required
                 className="
                                     w-full
@@ -231,7 +231,7 @@ function Register() {
                                 focus:ring-blue-500/30
                             "
             >
-              Criar conta
+              Create Account
             </button>
           </form>
 
@@ -241,12 +241,12 @@ function Register() {
             </div>
 
             <div className="relative flex justify-center">
-              <span className="bg-white px-3 text-sm text-gray-400">ou</span>
+              <span className="bg-white px-3 text-sm text-gray-400">or</span>
             </div>
           </div>
 
           <p className="text-center text-sm text-gray-500">
-            Já possui uma conta?
+            Already have an account?
             <Link
               to="/"
               className="
@@ -256,13 +256,13 @@ function Register() {
                                 hover:underline
                             "
             >
-              Entrar
+              Sign In
             </Link>
           </p>
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          © {new Date().getFullYear()} MyApp. Todos os direitos reservados.
+          © {new Date().getFullYear()} MyApp. All rights reserved.
         </p>
       </div>
     </main>

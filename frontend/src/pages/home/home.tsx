@@ -2,7 +2,7 @@
 
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getDashboard } from "../../service/api";
+import { getDashboard } from "../../services/api";
 
 function Home() {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Home() {
             } catch (error) {
                 navigate("/login", { replace: false });
                 setCheck(false);
-                console.error("Usuario não autenticado", error);
+                console.error("User not authenticated", error);
             }
         };
 
@@ -23,10 +23,10 @@ function Home() {
     }, [navigate]);
 
     if (check) {
-        console.log("Usuario autenticado");
+        console.log("User is authenticated");
     }
 
-    return (<><p>Carregando...</p></>);
+    return (<><p>Loading...</p></>);
 }
 
 export default Home;
